@@ -11,9 +11,9 @@
   <!-- <link rel="stylesheet" href="{% static 'store/css/bootstrap.min.css' %}"> -->
   <!-- main css -->
   <link rel="stylesheet" href="{% static 'store/css/style.css' %}">
-
   <!-- font awesome -->
-<link rel="stylesheet" href="{% static 'store/css/all.css' %}">
+ <link rel="stylesheet" href="{% static 'store/css/all.css' %}">
+
   <title>Grandma's Project</title>
   <style>
   </style>
@@ -82,9 +82,9 @@
               <i class="fas fa-shopping-cart"></i>
             </span>
             <p class="mb-0 text-capitalize">
-              <span id="item-count">2</span>
+              <span id="item-count">0</span>
               items - $
-              <span class="item-total">10.49</span>
+              <span class="item-total">0.00</span>
             </p>
             </span>
           </div>
@@ -104,8 +104,39 @@
           <a href="#store" class="btn banner-link text-uppercase my-2">Explore</a>
 <!--        </div>-->
       </div>
-        <!-- store -->
-      </div>
+        <!-- cart -->
+        <div class="modal-parent">
+          <div class="cart" id="cart">
+            <div class="cart-item text-capitalize my-3">
+              <div class="row justify-content-between" id='modal-items'>
+                <!-- items dynamically added here from local storage -->
+  
+              </div>
+              <div class="row justify-content-center my-3">
+                <div class="col-6">
+                  <div class="row">
+                    <div class="col-6">
+                      <h5>Total</h5>
+                    </div>
+                    <div class="col-2">
+                      <h5 >$<span class='modal-total-price'>0</span></h5>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="row mx-auto">
+              <div class="col-6">
+                <div class="btn btn-black text-uppercase">clear cart</div>
+              </div>
+              <div class="col-6">
+                <a href="#" class='btn btn-pink text-uppercase'>checkout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+      <!-- end cart -->
     </div>
     <!-- end banner -->
   </header>
@@ -144,10 +175,10 @@
           <div class="row">
             <div class="col-lg-8 mx-auto d-flex justify-content-around sortBtn flex-wrap">
               <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='all'>all</a>
-              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='all'>cakes</a>
-              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='all'>cupcakes</a>
-              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='all'>sweets</a>
-              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='all'>doughnuts</a>
+              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='cake'>cakes</a>
+              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='cupcake'>cupcakes</a>
+              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='sweets'>sweets</a>
+              <a href="#" class=" btn btn-black text-uppercase filter-btn m-2" data-filter='doughnut'>doughnuts</a>
             </div>
           </div>
           <!-- end filter buttons -->
@@ -155,7 +186,7 @@
           <div class="col-10 mx-auto col-md-6">
             <form>
               <div class="input-group mb-3">
-                <div class="input-group-prepend">
+                <div class="input-group-prepend name-search">
                   <span class="input-group-text search-box" id="search-icon">
                     <i class="fas fa-search"></i>
                   </span>
@@ -170,12 +201,12 @@
         <div class="row store-items" id="store-items">
           <!-- single item -->
           {% for item in items.all %}
-          <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item sweets" data-item="{{ item.type }}">
-            <div class="card single-item">
+          <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item {{ item.type }}" data-item="{{ item.type }}">
+            <div class="card single-item" id='{{ item.id }}'>
               <div class="img-container">
-                <img src="{{ item.picture.url }}" class="card-img-top store-img" alt=""/>
+                <img src="{{ item.picture.url }}" class="card-img-top store-img" alt="item picture"/>
                 <span class="store-item-icon">
-                  <div class="fas fa-shopping-cart"></div>
+                  <div class="fas fa-shopping-cart add-cart-btn"></div>
                 </span>
               </div>
               <div class="card-body">
@@ -277,7 +308,9 @@
   <script src="{% static 'store/js/jquery-3.3.1.min.js' %}"></script>
   <!-- bootstrap js -->
   <script src="{% static 'store/js/bootstrap.bundle.min.js' %}"></script>
-  <!-- script js -->
+  <!-- custom js -->
+  <script src="{% static 'store/js/script.js' %}"></script>
+
 <!--  <script src="js/app.js"></script>-->
 </body>
 
