@@ -35,9 +35,18 @@
           <div class="order-items">
             <!-- item from local storage go here -->
           </div>
+          <div class="row justify-content-end">
+            <div class="col-3">
+              <h6 class=''>Total: $<span class='total-price'></span></h6>
+            </div>
+            <!-- <div class="col-2">
+              <h6>$<span>100</span></h6>
+            </div> -->
+          </div>
           <p class='mt-2' id='card-form-error'>Invalid Information</p>
           <h6>Contact Information</h6>
           <form action="">
+            {% csrf_token %}
           <div class="form-row">
             <div class="col-6">
               <input type="text"  class="form-control" id='name' placeholder="name">
@@ -46,18 +55,16 @@
               <input type="text"  class="form-control" id='phone-number' placeholder="phone">
             </div>
           </div>
-          <h6>Payment</h6>
+          <h6 class='my-2'>Payment</h6>
           
             <div class="form-row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <!-- <label for="cardName">Name on Card</label> -->
                   <input type="text" class="form-control" id="cardName" placeholder="name">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <!-- <label for="cardNum">Card Number</label> -->
                   <input type="text" class="form-control" id="cardNum" placeholder="card number">
                 </div>
               </div>
@@ -66,26 +73,23 @@
             <div class="form-row">
               <div class="col-md-2">
                 <div class="form-group">
-                  <!-- <label for="code">CVV</label> -->
                   <input type="text" class="form-control" id="code" placeholder="123">
                 </div>
               </div>
               <div class="col-md-2 col-6">
                 <div class="form-group">
-                  <!-- <label for="code">Month</label> -->
                   <input type="text" class="form-control" id="month" placeholder="01">
                 </div>
               </div>
               <div class="col-md-2 col-6">
                 <div class="form-group">
-                  <!-- <label for="code">Year</label> -->
                   <input type="text" class="form-control" id="year" placeholder="2026">
                 </div>
               </div>
 
               <!-- end form row -->
             </div>
-            <button class="btn btn-pink" id='addPaymentBtn'>Place Order</button>
+            <button class="btn btn-black" id='addPaymentBtn'>Place Order</button>
           </form>
         </div>
 
@@ -149,14 +153,14 @@
             <p class="mb-0">+ 123 4352 654</p>
           </div>
           <!-- second info -->
-          <div id="cart-info" class="nav-info align-items-center cart-info d-flex lustifu-content-between mx-lg-5">
+          <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
             <span class="cart-info_icon mr-lg-3">
               <i class="fas fa-shopping-cart"></i>
             </span>
             <p class="mb-0 text-capitalize">
               <span id="item-count">0</span>
-              items - $
-              <span class="item-total">0.00</span>
+              items- $
+              <span class="item-total total-price">0.00</span>
             </p>
             </span>
           </div>
@@ -188,7 +192,7 @@
                       <h5>Total</h5>
                     </div>
                     <div class="col-2">
-                      <h5>$<span class='modal-total-price'>0</span></h5>
+                      <h5>$<span class='total-price'>0</span></h5>
                     </div>
                   </div>
                 </div>

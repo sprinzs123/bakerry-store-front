@@ -7,7 +7,7 @@ showHowMany()
 showHowMuch()
 modalExpand()
 deleteItem()
-formValidation()
+placeOrder()
 // click event on the filter btns
 function itemFilter(){
     allFilterBtns = document.querySelectorAll('.filter-btn')
@@ -135,7 +135,7 @@ function orderSummary(name, quantity, imgSrc, price){
   let parentDiv = document.querySelector('.order-items')
   let totalPrice = price * quantity
   newItem = `
-  <div class='row justify-content-around my-1 pl-2'>
+  <div class='row justify-content-between my-1'>
     <div class="col-3">
         <img src="${imgSrc}" alt="omg" class='img-fluid my-auto'>
     </div>
@@ -196,10 +196,20 @@ function showHowMany(){
   let navCount = document.querySelector('#item-count')
   navCount.innerHTML = number
 }
+// function showHowMuch(){
+  // let total = totPrice()
+  // let displayedPrice = document.querySelector('.item-total')
+  // displayedPrice.innerHTML = total
+// }
+
+// show right total price
+// have few place where need to put this info
+// for loop each item and assign innerHTMl
 function showHowMuch(){
-  let total = totPrice()
-  let displayedPrice = document.querySelector('.item-total')
-  displayedPrice.innerHTML = total
+  let needPrice = document.querySelectorAll('.total-price')
+  needPrice.forEach(function(price){
+    price.innerHTML = totPrice()
+  })
 }
 
 
@@ -207,7 +217,6 @@ function showHowMuch(){
 function modalExpand(){
   let popoverContainers = document.getElementById('modal-items')
   if(popoverContainers.hasChildNodes()){
-    console.log(popoverContainers.childCount)
     let modalToggleBtn = document.querySelector('#cart-info')
     let cart = document.querySelector('.cart')
     modalToggleBtn.addEventListener('click', function(event){
@@ -254,39 +263,99 @@ function formValidation(){
   let yearBox = document.getElementById("year");
   let codeBox = document.getElementById("code");
 
-  let contactName = document.querySelector('#name')
-  let contactPhone = document.querySelector('#phone-number')
+  let contactName = document.querySelector('#name').value
+  let contactPhone = document.querySelector('#phone-number').value
   let name = document.querySelector("#cardName").value;
   let cardNum = document.querySelector("#cardNum").value;
   let month = document.querySelector("#month").value;
   let year = document.querySelector("#year").value;
   let code = document.querySelector("#code").value;
 
-  if (isNaN(year) || year.length > 5 || year.includes(".")) {
+  if (isNaN(year) || year.length > 5 || year.includes(".") || year.length < 2) {
     errorMsg.style.display = "block";
     yearBox.classList.add("error-border");
     errors += 1;
   }
-  if (isNaN(month) || parseInt(month) > 12 || month.includes(".")) {
-    errorMsg.style.display = "block";
+  else{
+    yearBox.classList.remove("error-border");
+
+  };
+  if (isNaN(month) || parseInt(month) > 12 || month.includes(".") ||month.length == 0){
+    errorMsg.style.display = "block";  
     monthBox.classList.add("error-border");
     errors += 1;
   }
+  else{
+    yearBox.classList.remove("error-border");
+
+  };
   if (isNaN(cardNum) || cardNum.length != 3 || cardNum.includes(".")) {
     errorMsg.style.display = "block";
     cardNumBox.classList.add("error-border");
     errors += 1;
   }
+  else{
+    cardNumBox.classList.remove("error-border");
+
+  };
+  if (isNaN(contactPhone) || contactPhone.length != 3 || contactPhone.includes(".")) {
+    errorMsg.style.display = "block";
+    contactPhoneBox.classList.add("error-border");
+    errors += 1;
+  }
+  else{
+    contactPhoneBox.classList.remove("error-border");
+
+  };
   if (isNaN(code) || code.length != 3 || code.includes(".")) {
     errorMsg.style.display = "block";
     codeBox.classList.add("error-border");
     errors += 1;
   }
+  else{
+    codeBox.classList.remove("error-border");
+
+  };
   if (/^[A-Za-z]+$/.test(name.replace(" ", "")) == false) {
     errorMsg.style.display = "block";
     nameBox.classList.add("error-border");
     errors += 1;
   }
+  else{
+    nameBox.classList.remove("error-border");
 
+  };
 
+  if (/^[A-Za-z]+$/.test(contactName.replace(" ", "")) == false) {
+    errorMsg.style.display = "block";
+    contactNameBox.classList.add("error-border");
+    errors += 1;
+  }
+  else{
+    contactNameBox.classList.remove("error-border");
+
+  };
+  if(errors != 0){
+    return false
+  }
+  else{
+    return true
+  }
 }
+
+// submit order when click on pace order btn
+function placeOrder(){
+  let btnOrder = document.getElementById('addPaymentBtn')
+  btnOrder.addEventListener('click', function(event){
+    if(formValidation() == false){
+      event.preventDefault()
+      formValidation() 
+    }
+    else{
+      localStorage.clear('cart')
+      showHowMany()
+      showHowMuch()
+    }
+  })
+}
+
