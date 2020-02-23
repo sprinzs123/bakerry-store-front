@@ -20,6 +20,7 @@ body {
   border-color: var(--mainPink)!important;
 }
 .btn-pink:hover{
+  cursor: pointer;
   color: var(--mainPink)!important;
   background: var(--mainBlack)!important;
 }
@@ -30,6 +31,7 @@ body {
   border-color: var(--mainBlack)!important;
 }
 .btn-black:hover{
+  cursor: pointer;
   color: var(--mainPink)!important;
   background: var(--mainBlack)!important;
 }
@@ -123,6 +125,15 @@ body {
 .fa-trash:hover{
   cursor: pointer;
   color: var(--mainPink);
+}
+
+.card-form-error{
+  /* display: none; */
+  font-family: "Times New Roman", normal !important;
+  font-style: normal;
+}
+.error-border{
+  border-color: red !important;
 }
 
 /* about section */
