@@ -127,13 +127,17 @@ body {
   color: var(--mainPink);
 }
 
-.card-form-error{
-  /* display: none; */
+#card-form-error{
+  display: none;
   font-family: "Times New Roman", normal !important;
   font-style: normal;
 }
 .error-border{
   border-color: red !important;
+}
+.close-modal:hover{
+  color: var(--mainPink);
+  cursor: pointer;
 }
 
 /* about section */

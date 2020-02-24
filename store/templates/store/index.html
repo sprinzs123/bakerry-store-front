@@ -30,20 +30,20 @@
             <div>
               <h5 class="text-capitalize mx-auto">order summary</h5>
             </div>
-            <i class="fas fa-times" data-dismiss="modal"></i>
+            <i class="fas fa-times close-modal" data-dismiss="modal"></i>
           </div>
           <div class="order-items">
             <!-- item from local storage go here -->
           </div>
           <div class="row justify-content-end">
             <div class="col-3">
-              <h6 class=''>Total: $<span class='total-price'></span></h6>
+              <h6 class=''>Total: $<b><span class='total-price'></span></b></h6>
             </div>
             <!-- <div class="col-2">
               <h6>$<span>100</span></h6>
             </div> -->
           </div>
-          <p class='mt-2' id='card-form-error'>Invalid Information</p>
+          <p class='mt-2 text-danger' id='card-form-error'>Invalid Information</p>
           <h6>Contact Information</h6>
           <form action="">
             {% csrf_token %}
@@ -73,23 +73,23 @@
             <div class="form-row">
               <div class="col-md-2">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="code" placeholder="123">
+                  <input type="text" class="form-control" id="code" placeholder="CVV">
                 </div>
               </div>
               <div class="col-md-2 col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="month" placeholder="01">
+                  <input type="text" class="form-control" id="month" placeholder="month">
                 </div>
               </div>
               <div class="col-md-2 col-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="year" placeholder="2026">
+                  <input type="text" class="form-control" id="year" placeholder="year">
                 </div>
               </div>
 
               <!-- end form row -->
             </div>
-            <button class="btn btn-black" id='addPaymentBtn'>Place Order</button>
+            <button class="btn btn-pink" id='addPaymentBtn'>Place Order</button>
           </form>
         </div>
 
@@ -199,7 +199,7 @@
               </div>
               <div class="row mx-auto">
                 <div class="col-6">
-                  <div class="btn btn-black text-uppercase">clear cart</div>
+                  <div class="btn btn-black text-uppercase clear-cart">clear cart</div>
                 </div>
                 <div class="col-6">
                   <btn href="#" class='btn btn-pink text-uppercase' data-toggle="modal" data-target="#check-out-modal">

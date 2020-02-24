@@ -8,6 +8,7 @@ showHowMuch()
 modalExpand()
 deleteItem()
 placeOrder()
+deleteAll()
 // click event on the filter btns
 function itemFilter(){
     allFilterBtns = document.querySelectorAll('.filter-btn')
@@ -79,7 +80,8 @@ function addToCart(){
         cart[itemId] = [quantity, itemName, itemPrice, itemImg];
       }
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log(localStorage.getItem('cart'))
+      showHowMany()
+      showHowMuch()
     })
 
   })
@@ -246,6 +248,18 @@ function deleteItem(){
       showHowMany()
       showHowMuch()
   })
+  })
+}
+// delete all items from cart clear cart brn
+function deleteAll(){
+  let deleteBtn = document.querySelector('.clear-cart')
+  deleteBtn.addEventListener('click', function(event){
+    let cart = document.querySelector('.cart')
+    cart.classList.remove('modal-expand')
+    localStorage.clear('cart')
+    modalExpand()
+    showHowMany()
+    showHowMuch()
   })
 }
 
